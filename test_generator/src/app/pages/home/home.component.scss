@@ -1,0 +1,37 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color:var(--blanco);
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 30px;
+    color: var(--primario);
+    margin-bottom: 30px;
+    text-align: center;
+
+}
+
+.btn-login {
+    padding: 10px 50px;
+    font-size: 12px;
+    background-color: var(--primario);
+    color:var(--blanco);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+    &:hover {
+        background-color: var(--oscuro);
+        transform: scale(1.05);
+      }
+    }

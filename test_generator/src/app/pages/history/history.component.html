@@ -1,0 +1,87 @@
+<div class="history-container">
+        <br>
+        <br>
+        <br>
+  <h2>Historial de Tests Generados</h2>
+
+  <!-- Sección de Filtros -->
+  <div class="filters-section">
+    <label for="user-filter">Usuario:</label>
+    <select id="user-filter" [(ngModel)]="selectedUser" (ngModelChange)="applyFilters()">
+      <option *ngFor="let user of availableUsers" [value]="user">{{ user }}</option>
+    </select>
+
+    <label for="date-filter">Fecha:</label>
+    <input type="date" id="date-filter" [(ngModel)]="selectedDate" (ngModelChange)="applyFilters()">
+
+    <label for="subject-filter">Materia:</label>
+    <select id="subject-filter" [(ngModel)]="selectedSubject" (ngModelChange)="applyFilters()">
+      <option *ngFor="let subject of availableSubjects" [value]="subject">{{ subject }}</option>
+    </select>
+
+    <label for="questions-filter">Nº Preguntas:</label>
+    <select id="questions-filter" [(ngModel)]="selectedNumberOfQuestions" (ngModelChange)="applyFilters()">
+      <option value="Todos">Todos</option>
+      <option *ngFor="let num of questionNumberOptions" [value]="num">{{ num }}</option>
+    </select>
+
+    <div class="favorite-filter">
+      <label for="favorites-only">
+        <input type="checkbox" id="favorites-only" [(ngModel)]="showOnlyFavorites" (ngModelChange)="applyFilters()">
+        Solo favoritos
+      </label>
+    </div>
+
+    <button (click)="clearFilters()">Limpiar Filtros</button>
+  </div>
+
+  <!-- Indicador de Carga -->
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Cargando historial...</p>
+    <!-- Podrías añadir un spinner CSS aquí -->
+  </div>
+
+  <!-- Tabla de Historial -->
+  <div *ngIf="!isLoading">
+    <table class="history-table" *ngIf="tests.length > 0; else noTests">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Fecha y Hora</th>
+          <th>Materia</th>
+          <th>Número de Preguntas</th>
+          <th>Favorito</th>
+          <th>Descargar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--Repetición para cada test generado-->
+        <tr *ngFor="let test of tests">
+          <td data-label="Usuario">{{ test.username }}</td>
+          <td data-label="Fecha y Hora">{{ test.dateTime | date:'dd/MM/yyyy HH:mm' }}</td> <!-- Formato de fecha mejorado -->
+          <td data-label="Materia">{{ test.subject }}</td>
+          <td data-label="Número de Preguntas">{{ test.numberOfQuestions }}</td>
+          <td data-label="Favorito">
+            <button [class.favorite-active]="test.isFavorite" class="favorite-button" (click)="toggleFavorite(test)">
+              <span *ngIf="test.isFavorite">★</span>
+              <span *ngIf="!test.isFavorite">☆</span>
+            </button>
+          </td>
+          <td data-label="Descargar">
+            <button (click)="downloadTest(test)">Descargar</button>
+          </td>
+          <td data-label="Eliminar">
+            <button class="button-delete" (click)="deleteTest(test)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Mensaje si no hay tests -->
+    <ng-template #noTests>
+      <p class="no-tests-message">No hay tests que coincidan con los filtros seleccionados o no se han generado tests todavía.</p>
+    </ng-template>
+  </div>
+
+</div>

@@ -1,0 +1,175 @@
+<div class="generator-container">
+  <form class="generator-form" (ngSubmit)="generateTest()" #formRef="ngForm">
+    <h2>Generador Test</h2>
+
+    <div class="form-group">
+      <label for="excel">1. Añadir archivo Excel:</label>
+      <input
+        type="file"
+        id="excel"
+        name="excel"
+        accept=".xlsx,.xls"
+        (change)="onFileSelected($event)"
+        required
+      />
+    </div>
+
+    <ng-container *ngIf="excelLoaded">
+
+      <div class="form-group">
+        <label for="subject">2. Asignatura:</label>
+        <select
+          id="subject"
+          name="subject"
+          [(ngModel)]="subject"
+          required
+        >
+          <option value="" disabled>Seleccionar asignatura</option>
+          <!--
+           * Aquí es donde he implementado el cambio clave para las asignaturas.
+           * Anteriormente, teníais las asignaturas codificadas directamente en el HTML, por ejemplo:
+           * <option value="matematicas">Matemáticas</option>
+           * <option value="lengua">Lengua</option>
+           *
+           * El inconveniente de esto era que si añadíais una nueva asignatura en el Excel,
+           * no aparecía automáticamente en este selector.
+           *
+           * Ahora, utilizo `subjectOptions`. Esta lista se rellena dinámicamente
+           * con todas las asignaturas únicas que la aplicación lee de vuestro Excel.
+           * De esta forma, cualquier asignatura que incluyáis en el Excel aparecerá aquí
+           * sin que necesitéis modificar el código HTML.
+           *
+           * El pipe `| titlecase` es una característica de Angular que formatea el texto
+           * para que la primera letra de cada asignatura se muestre en mayúscula
+           * (por ejemplo, "historia" se verá como "Historia"), mejorando la presentación visual.
+           * Internamente, seguimos gestionando los valores en minúsculas para las comparaciones.
+           -->
+          <ng-container *ngFor="let s of subjectOptions">
+            <option [value]="s">{{ s | titlecase }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="topic">3. Tema:</label>
+        <select
+          id="topic"
+          name="selectedTopic"
+          [(ngModel)]="selectedTopic"
+          required
+        >
+          <option value="" disabled>Seleccionar tema</option>
+          <!--
+           * Este selector de temas ya funcionaba eficientemente leyendo los datos del Excel.
+           * Simplemente le he añadido el pipe `| titlecase` para que también se muestre
+           * con la primera letra en mayúscula, manteniendo la consistencia visual con las asignaturas.
+           -->
+          <ng-container *ngFor="let t of topicOptions">
+            <option [value]="t">{{ t | titlecase }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="totalQuestions">4. Total de preguntas:</label>
+        <select
+          id="totalQuestions"
+          name="totalQuestions"
+          [(ngModel)]="totalQuestions"
+          required
+        >
+          <option [ngValue]="null" disabled>Seleccionar cantidad</option>
+          <ng-container *ngFor="let n of questionOptions">
+            <option [ngValue]="n">{{ n }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numFour">5. De 4 respuestas:</label>
+        <select
+          id="numFour"
+          name="numFour"
+          [(ngModel)]="numFour"
+          required
+        >
+          <option [ngValue]="null" disabled>Seleccionar cantidad</option>
+          <ng-container *ngFor="let n of questionOptions">
+            <option [ngValue]="n">{{ n }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numDev">6. De desarrollo:</label>
+        <select
+          id="numDev"
+          name="numDev"
+          [(ngModel)]="numDev"
+          required
+        >
+          <option [ngValue]="null" disabled>Seleccionar cantidad</option>
+          <ng-container *ngFor="let n of questionOptions">
+            <option [ngValue]="n">{{ n }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numEasy">7. Fáciles:</label>
+        <select
+          id="numEasy"
+          name="numEasy"
+          [(ngModel)]="numEasy"
+          required
+        >
+          <option [ngValue]="null" disabled>Seleccionar cantidad</option>
+          <ng-container *ngFor="let n of questionOptions">
+            <option [ngValue]="n">{{ n }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numMedium">8. Medias:</label>
+        <select
+          id="numMedium"
+          name="numMedium"
+          [(ngModel)]="numMedium"
+          required
+        >
+          <option [ngValue]="null" disabled>Seleccionar cantidad</option>
+          <ng-container *ngFor="let n of questionOptions">
+            <option [ngValue]="n">{{ n }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numHard">9. Difíciles:</label>
+        <select
+          id="numHard"
+          name="numHard"
+          [(ngModel)]="numHard"
+          required
+        >
+          <option [ngValue]="null" disabled>Seleccionar cantidad</option>
+          <ng-container *ngFor="let n of questionOptions">
+            <option [ngValue]="n">{{ n }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button
+          type="submit"
+          class="generate-test-btn"
+          [disabled]="formRef.invalid"
+        >
+          Generar Test
+        </button>
+      </div>
+
+    </ng-container>
+  </form>
+</div>

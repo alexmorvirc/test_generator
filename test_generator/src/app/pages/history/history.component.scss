@@ -1,0 +1,241 @@
+.history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Titulo */
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--secundario);
+  margin-bottom: 20px;
+}
+
+/* Sección de Filtros - Diseño integrado y sutil */
+.filters-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 15px;
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: stretch;
+    width: 95%;
+  }
+
+  label {
+    color: var(--oscuro); 
+    margin-right: 5px;
+    font-weight: normal; 
+  }
+
+  select,
+  input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    background-color: var(--blanco, #fff); 
+    color: var(--oscuro, #333);  
+    font-size: 0.9rem;
+  }
+
+  .favorite-filter {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+  }
+
+  // Botón de limpiar filtros usará el estilo de botón general
+  // Si necesitas ajustes específicos para el botón de limpiar filtros:
+  // button {
+  //   margin-left: auto; // Para empujarlo a la derecha si es el último elemento y hay espacio
+  // }
+}
+
+.history-table {
+  width: 100%;
+  max-width: 1000px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: auto;
+
+  @media (max-width: 1024px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 767px) {
+    width: 95%;
+    margin: 0 auto 20px;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: transparent; // Mismo color de fondo que la tabla
+    font-weight: bold; // Mantenemos negrita para distinguir el encabezado
+  }
+
+  // Esta regla está comentada para evitar conflictos con los estilos de tbody
+
+  button {
+    padding: 5px 10px;
+    background-color: var(--primario);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--oscuro);
+    }
+
+    &.button-delete {
+      background-color: var(--oscuro);
+
+      &:hover {
+        background-color: var(--oscuro);
+      }
+    }
+
+    &.favorite-button {
+      background-color: transparent;
+      color: var(--primario);  
+      font-size: 20px; 
+      padding: 0;
+      line-height: 1;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        background-color: transparent;
+        transform: scale(2);
+        color: var(--primario);
+      }
+
+      &.favorite-active {
+        color: yellowgreen;
+      }
+    }
+  }
+}
+
+/* Cabeceras de la tabla */
+thead {
+  background-color: var(--secundario);
+  th {
+    font-weight: bold;
+    color: var(--blanco);
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--oscuro);
+  }
+}
+
+/* Filas de las tablas */
+tbody {
+  tr {
+    background-color: var(--secundario);
+    border-bottom: 1px solid var(--oscuro);
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--oscuro) !important; /* Aseguramos que este estilo tenga prioridad */
+    }
+
+    td {
+      padding: 12px;
+      color: var(--blanco);
+    }
+  }
+}
+
+/* Boton General (para "Limpiar Filtros" y botones de "Descargar") */
+button {
+  background-color: var(--primario);
+  color: var(--blanco);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--secundario);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+}
+
+/* Ajustes para los botones de descarga DENTRO de la tabla si es necesario */
+.history-table tbody td button {
+   padding: 8px 15px;
+   font-size: 0.9rem;
+}
+
+/* Estilo específico para el botón de eliminar dentro de la tabla */
+.history-table tbody td button.button-delete {
+  background-color: var(--alerta, #dc3545); 
+  color: var(--blanco);
+
+  &:hover {
+    background-color: var(--alerta-hover, #c82333);
+  }
+
+}
+
+
+/* Indicador de Carga */
+.loading-indicator {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: var(--secundario);
+  width: 100%;
+}
+
+/* Mensaje de No Tests */
+.no-tests-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1rem;
+  color: var(--oscuro);
+  background-color: #f8f9fa; 
+  border: 1px dashed #ced4da; 
+  border-radius: 8px;
+  width: 80%;
+  max-width: 1000px;
+  margin: 20px auto; 
+}

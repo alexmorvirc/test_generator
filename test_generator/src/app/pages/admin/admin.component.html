@@ -1,0 +1,23 @@
+<div class="admin-container">
+  <form class="admin-form" (ngSubmit)="crearUsuario()">
+    <h2>Crear Usuario</h2>
+
+    <div class="form-group">
+      <label for="nombre">Nombre completo</label>
+      <input id="nombre" type="text" [(ngModel)]="nombreCompleto" name="nombreCompleto" required />
+    </div>
+
+    <div class="form-group">
+      <label class="checkbox-label">
+        <input type="checkbox" [(ngModel)]="esAdmin" name="esAdmin" />
+        ¿Es administrador?
+      </label>
+    </div>
+
+    <button type="submit" class="create-user-btn">Crear Usuario</button>
+
+    <div class="message" [ngClass]="{ 'success': mensaje.includes('Usuario creado'), 'error': mensaje.startsWith('Error') }">
+      {{ mensaje }}
+    </div>
+  </form>
+</div>

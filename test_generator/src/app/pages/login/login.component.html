@@ -1,0 +1,47 @@
+<!-- Creación del contenedor principal del login-->
+
+<div class="login-container">
+
+    <!--Parte que contiene el formulario del login-->
+<div class="login-part">
+    <h2>Iniciar Sesión</h2>
+  @if (message) {
+    <div class="alert alert-{{type}}" role="alert">
+      {{message}}
+    </div>>
+  }
+<!--Formulario-->
+<form (ngSubmit)="onLogin()" #loginForm="ngForm">
+        <div class="form-user">
+                <label for="email">Correo electrónico</label>
+                <input type="text" id="email" required [(ngModel)]="email" name="email" class="form-control">
+        </div>
+        <div class="form-psswd">
+            <label for="password">Contraseña</label>
+            <div class="password-container">
+                <input
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  id="password"
+                  required
+                  [(ngModel)]="password"
+                  name="password"
+                  class="form-control">
+                  <!--Ojo abierto-->
+                <button type="button" (click)="togglePasswordVisibility()" class="show-password-btn">
+                  <svg *ngIf="passwordVisible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="1.5">
+                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"></path>
+                </svg>
+                <!--Ojo cerrado-->
+                <svg *ngIf="!passwordVisible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="1.5">
+                  <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                  <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"></path>
+                  <path d="M1 1l22 22"></path> <!--línea que tacha el ojo-->
+              </svg>
+                </button>
+              </div>
+            </div>
+    <button type="submit" class="btn-enter" [disabled]="!loginForm.valid" (click)="login()">Iniciar Sesión</button>
+</form>
+</div>
+</div>

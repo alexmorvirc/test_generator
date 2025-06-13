@@ -1,0 +1,83 @@
+nav {
+  display: flex;
+  justify-content: flex-start; /* Alinear todo a la izquierda */
+  background: linear-gradient(to bottom, #273F4F, rgba(112, 109, 84, 0));
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+}
+
+a {
+  color: var(--oscuro);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--oscuro);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: var(--secundario);
+  color: var(--blanco);
+  font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2001; /* Asegura que el botón sea clickeable */
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--blanco);
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 2100;
+  border-radius: 5px;
+  margin-top: 8px; /* Separación del botón */
+  pointer-events: auto;
+}
+
+
+.dropdown-content a {
+  padding: 12px 16px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  color: var(--oscuro);
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.dropdown-content svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--oscuro);
+  pointer-events: none;
+}
+
+.active-link {
+  color: var(--secundario)/* Resalta el enlace activo */
+}

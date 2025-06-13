@@ -1,0 +1,107 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #EFEEEA;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    width: 100%;
+    min-height: 100vh;
+}
+
+:root {
+    --blanco: #EFEEEA;
+    --oscuro: black;
+    --primario: #FE7743;
+    --secundario: #273F4F;
+    --mobile-breakpoint: 576px;
+    --tablet-breakpoint: 768px;
+    --desktop-breakpoint: 992px;
+    --large-desktop-breakpoint: 1200px;
+}
+
+/* Responsive table styles */
+@media (max-width: 767px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tr {
+        margin-bottom: 15px;
+    }
+    
+    td {
+        position: relative;
+        padding-left: 50% !important;
+        text-align: right !important;
+    }
+    
+    td:before {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        content: attr(data-label);
+    }
+}
+
+// Estilos generales para CADA recuadro de notificación (toast)
+.ngx-toastr {
+  max-width: 350px;         
+  padding: 12px 18px;      
+  font-size: 0.95em;       
+}
+
+// Título general para todos los toasts
+.ngx-toastr .toast-title {
+  font-size: 1.05em;      
+  margin-bottom: 5px;     
+  font-weight: bold;          
+}
+
+// Mensaje general para todos los toasts
+.ngx-toastr .toast-message {
+  font-family: 'Arial', sans-serif; 
+  font-size: 0.9em;      
+  word-wrap: break-word;   // Para que las palabras largas no rompan el layout
+}
+
+// Botón de cierre general
+.ngx-toastr .toast-close-button {
+  font-size: 1.3em;
+
+}
+
+
+
+// Estilos para toasts de ÉXITO
+.ngx-toastr.toast-success {
+  background-color: var(--primario);
+  color: var(--blanco)          
+  // border-left: 5px solid #28a745 ; // Un borde izquierdo verde más fuerte
+}
+
+
+// Estilos para toasts de ERROR
+.ngx-toastr.toast-error {
+  background-color: #740202;
+  color: var(--blanco) 
+
+}
+.ngx-toastr.toast-error .toast-title {
+  color: var(--blanco) // El color de título que ya tenías para error
+  // background-color: gray; // Este fondo gris podría verse raro con el rojo pastel, considera quitarlo
+}

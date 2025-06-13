@@ -1,0 +1,113 @@
+/*Contenedor*/
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/*Formulario Login*/
+.login-part {
+    background-color:var(--secundario);
+    padding: 30px;
+    box-shadow: 0px 4px 6px var(--oscuro);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Centrado del formulario y sus elementos */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-enter {
+    width: 60%;
+    padding: 12px;
+    background-color: var(--primario);
+    color: #EFEEEA;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+
+    /* Efecto hover */
+    &:hover {
+        background-color: var(--oscuro);
+        transform: scale(1.1);
+    }
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+    color: var(--blanco);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/*texto username y password*/
+.form-psswd {
+    margin-bottom: 15px;
+    text-align: center;
+    color: var(--blanco);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.form-user {
+    margin-bottom: 15px;
+    text-align: center;
+    color: var(--blanco);
+    width: 100%;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: 1px solid var(--oscuro);
+    box-shadow: var(--primario);
+    background-color: var(--blanco);
+    box-sizing: border-box;
+    
+    @media (max-width: 767px) {
+        padding: 8px;
+    }
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.show-password-btn {
+    position: absolute;
+    top: 50%;
+    right: 15px; 
+    transform: translateY(-50%); 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0px;  
+    z-index: 1;  
+  }
+  
+  .show-password-btn svg {
+    width: 18px; 
+    height: 18px; 
+  }

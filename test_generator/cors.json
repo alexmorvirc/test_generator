@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["http://localhost:4200", "http://localhost:8100", "http://localhost:8080"],
+    "method": ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"],
+    "responseHeader": ["Content-Type", "Access-Control-Allow-Origin", "Authorization", "Content-Length", "User-Agent", "Accept", "X-Requested-With", "X-Firebase-Storage-Token"],
+    "maxAgeSeconds": 3600
+  }
+]
