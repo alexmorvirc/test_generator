@@ -5,13 +5,13 @@ import { getAuth } from "firebase/auth";
 
 
 export const enviroment = {
-    apiKey: "AIzaSyD78KCszHNZOAaYmMHbWBQiJ3pdTkDyDos",
-    authDomain: "b25-examenes.firebaseapp.com",
-    projectId: "b25-examenes",
-    storageBucket: "b25-examenes.firebasestorage.app",
-    messagingSenderId: "1022556442367",
-    appId: "1:1022556442367:web:b038b4af6e103e242046ca",
-    measurementId: "G-ZTHP3M6TZ6"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
 };
 
 const app = initializeApp(enviroment);
